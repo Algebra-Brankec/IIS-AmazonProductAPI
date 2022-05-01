@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:complexType name="descriptionType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  
+  <xs:complexType name="productIdType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+  
+  <xs:complexType name="titleType">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="userType">
+    <xs:sequence minOccurs="1" maxOccurs="1">
+      <xs:element name="firstname" type="xs:string"></xs:element>
+      <xs:element name="lastname" type="xs:string"></xs:element>
+    </xs:sequence>
+    <xs:attribute name="ID" type="xs:string" use="required"></xs:attribute>
+  </xs:complexType>
+
+  <xs:complexType name="productReviewType">
+    <xs:sequence>
+	  <xs:element name="productId" type="productIdType"></xs:element>
+      <xs:element name="title" type="titleType"></xs:element>
+	  <xs:element name="description" type="descriptionType"></xs:element>
+      <xs:element name="user" type="userType"></xs:element>
+      <xs:element name="grade">
+        <xs:simpleType>
+          <xs:restriction base="xs:integer">
+            <xs:minInclusive value="1"></xs:minInclusive>
+            <xs:maxInclusive value="5"></xs:maxInclusive>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="productReviews">
+    <xs:complexType>
+      <xs:sequence minOccurs="1" maxOccurs="unbounded">
+        <xs:element name="productReview" type="productReviewType"></xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+</xs:schema>

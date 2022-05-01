@@ -1,0 +1,32 @@
+<element name="productReviews" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+	<oneOrMore>
+		<element name="productReview">
+			<element name="productId">
+				<text/>
+			</element>
+			<element name="title">
+				<text/>
+			</element>
+			<element name="description">
+				<text/>
+			</element>
+			<element name="user">
+				<attribute name="ID">
+					<text/>
+				</attribute>
+				<element name="firstname">
+					<text/>
+				</element>
+				<element name="lastname">
+					<text/>
+				</element>
+			</element>
+			<element name="grade">
+				<data type="integer">
+					<param name="minInclusive">1</param>
+					<param name="maxInclusive">5</param>
+				</data>
+			</element>
+		</element>
+	</oneOrMore>
+</element>
