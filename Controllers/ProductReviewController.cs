@@ -15,7 +15,7 @@ namespace IIS_AmazonProductAPI.Controllers
     public class ProductReviewController : ControllerBase
     {
         [HttpPost]
-        public IActionResult Post(IFormFile xmlFile, [FromHeader] bool type)
+        public IActionResult Post(IFormFile xmlFile, [FromHeader] bool isXsd)
         {
             //https://docs.microsoft.com/en-us/dotnet/standard/data/xml/xml-schema-xsd-validation-with-xmlschemaset
             (bool, string) result;
@@ -24,7 +24,7 @@ namespace IIS_AmazonProductAPI.Controllers
             XmlXsdValidator xmlXsdValidator = new XmlXsdValidator();
             XmlRngValidator xmlRngValidator = new XmlRngValidator();
 
-            result = type ? xmlXsdValidator.IsValid(xmlFile.OpenReadStream()) : xmlRngValidator.IsValid(xmlFile.OpenReadStream());
+            result = isXsd ? xmlXsdValidator.IsValid(xmlFile.OpenReadStream()) : xmlRngValidator.IsValid(xmlFile.OpenReadStream());
 
             if (result.Item1)
             {
